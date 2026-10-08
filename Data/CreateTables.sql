@@ -7,19 +7,19 @@ alter role db_owner add member NandaSurendra;
 
 SELECT IS_ROLEMEMBER('db_owner', 'NandaSurendra') AS IsDbOwner;
 */
-if object_id('Team', 'U') is not null drop table Team;
-if object_id('Stadium', 'U') is not null drop table Stadium;    
-if object_id('Game', 'U') is not null drop table Game;
-if object_id('AppUser', 'U') is not null drop table AppUser;
-if object_id('Roster', 'U') is not null drop table Roster;
-if object_id('Player', 'U') is not null drop table Player;
-if object_id('PlayerStats', 'U') is not null drop table PlayerStats;
-if object_id('QBStats', 'U') is not null drop table QBStats;
-if object_id('RBStats', 'U') is not null drop table RBStats;
-if object_id('DefenderStats', 'U') is not null drop table DefenderStats;
-if object_id('KickerStats', 'U') is not null drop table KickerStats;
-if object_id('PunterStats', 'U') is not null drop table PunterStats
 if object_id('ReturnerStats', 'U') is not null drop table ReturnerStats;
+if object_id('PunterStats', 'U') is not null drop table PunterStats;
+if object_id('KickerStats', 'U') is not null drop table KickerStats;
+if object_id('DefenderStats', 'U') is not null drop table DefenderStats;
+if object_id('RBStats', 'U') is not null drop table RBStats;
+if object_id('QBStats', 'U') is not null drop table QBStats;
+if object_id('PlayerStats', 'U') is not null drop table PlayerStats;
+if object_id('Player', 'U') is not null drop table Player;
+if object_id('Roster', 'U') is not null drop table Roster;
+if object_id('AppUser', 'U') is not null drop table AppUser;
+if object_id('Game', 'U') is not null drop table Game;
+if object_id('Stadium', 'U') is not null drop table Stadium;
+if object_id('Team', 'U') is not null drop table Team;
 go
 create table Team(
     TeamId int identity(1,1) not null,
@@ -192,4 +192,3 @@ create table ReturnerStats(
     foreign key (RosterId) references Roster(RosterId),
     constraint PK_ReturnerStats primary key (ReturnerStatsId),
 );
-
