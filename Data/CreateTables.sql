@@ -127,63 +127,49 @@ create table QBStats(
 );
 go
 create table RBStats(
-    RBStatsId int identity(1,1) not null,
-    PlayerId int not null,
-    RosterId int not null,
+    RBStatsId int not null,
     RushingAttempts int not null,
     RushingYards int not null,
     RushingTouchdowns int not null,
     LongestRush int not null,
     Fumbles int not null,
-    foreign key (PlayerId) references Player(PlayerId),
-    foreign key (RosterId) references Roster(RosterId),
     constraint PK_RBStats primary key (RBStatsId),
+    constraint FK_RBStats_PlayerStats foreign key (RBStatsId) references PlayerStats(PlayerStatsId),
 );
 go
 create table DefenderStats(
-    DefenderStatsId int identity(1,1) not null,
-    PlayerId int not null,
-    RosterId int not null,
+    DefenderStatsId int not null,
     Tackles int not null,
     Sacks int not null,
     Interceptions int not null,
     ForcedFumbles int not null,
     DefensiveTouchdowns int not null,
-    foreign key (PlayerId) references Player(PlayerId),
-    foreign key (RosterId) references Roster(RosterId),
     constraint PK_DefenderStats primary key (DefenderStatsId),
+    constraint FK_DefenderStats_PlayerStats foreign key (DefenderStatsId) references PlayerStats(PlayerStatsId),
 );
 GO
 create table KickerStats(
-    KickerStatsId int identity(1,1) not null,
-    PlayerId int not null,
-    RosterId int not null,
+    KickerStatsId int not null,
     FieldGoalsMade int not null,
     FieldGoalsAttempted int not null,
     ExtraPointsMade int not null,
     ExtraPointsAttempted int not null,
     LongestFieldGoal int not null,
-    foreign key (PlayerId) references Player(PlayerId),
-    foreign key (RosterId) references Roster(RosterId),
     constraint PK_KickerStats primary key (KickerStatsId),
+    constraint FK_KickerStats_PlayerStats foreign key (KickerStatsId) references PlayerStats(PlayerStatsId),
 );
 GO
 create table PunterStats(
-    PunterStatsId int identity(1,1) not null,
-    PlayerId int not null,
-    RosterId int not null,
+    PunterStatsId int not null,
     Punts int not null,
     PuntYards int not null,
     LongestPunt int not null,
-    foreign key (PlayerId) references Player(PlayerId),
-    foreign key (RosterId) references Roster(RosterId),
     constraint PK_PunterStats primary key (PunterStatsId),
+    constraint FK_PunterStats_PlayerStats foreign key (PunterStatsId) references PlayerStats(PlayerStatsId),
 );
 GO
 create table ReturnerStats(
-    ReturnerStatsId int identity(1,1) not null,
-    PlayerId int not null,
-    RosterId int not null,
+    ReturnerStatsId int not null,
     KickReturns int not null,
     KickReturnYards int not null,
     KickReturnLong int not null,
@@ -192,9 +178,8 @@ create table ReturnerStats(
     PuntReturnYards int not null,
     PuntReturnTouchdowns int not null,
     PuntReturnLong int not null,
-    foreign key (PlayerId) references Player(PlayerId),
-    foreign key (RosterId) references Roster(RosterId),
     constraint PK_ReturnerStats primary key (ReturnerStatsId),
+    constraint FK_ReturnerStats_PlayerStats foreign key (ReturnerStatsId) references PlayerStats(PlayerStatsId),
 );
 go
 create table AppUser(
