@@ -7,6 +7,8 @@ alter role db_owner add member NandaSurendra;
 
 SELECT IS_ROLEMEMBER('db_owner', 'NandaSurendra') AS IsDbOwner;
 */
+if object_id('AppUserTeam', 'U') is not null drop table AppUserTeam;
+if object_id('PlayerPosition', 'U') is not null drop table PlayerPosition;
 if object_id('TeamCoach', 'U') is not null drop table TeamCoach;
 if object_id('Coach', 'U') is not null drop table Coach;
 if object_id('GamePrediction', 'U') is not null drop table GamePrediction;
@@ -244,5 +246,22 @@ create table TeamCoach(
     foreign key (CoachId) references Coach(CoachId),
     constraint PK_TeamCoach primary key (TeamCoachId),
 );
-GO
+go 
+create table PlayerPosition(
+    PlayerPositionId int identity(1,1) not null,
+    PlayerId int not null,
+    PositionId int not null,
+    foreign key (PlayerId) references Player(PlayerId),
+    foreign key (PositionId) references Position(PositionId),
+    constraint PK_PlayerPosition primary key (PlayerPositionId),
+);
+go
+create table AppUserTeam(
+    AppUserTeamId int identity(1,1) not null,
+    UserId int not null,
+    TeamId int not null,
+    foreign key (UserId) references AppUser(UserId),
+    foreign key (TeamId) references Team(TeamId),
+    constraint PK_AppUserTeam primary key (AppUserTeamId),
+);
 
